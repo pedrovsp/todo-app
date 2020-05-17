@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Todo } from '../todo/Todo';
+import { Menu } from '../layout/menu/Menu';
+import { Routes } from './routes';
 
 export class App extends Component {
     render() {
         return (
-            <div className="container">
-                <Todo></Todo>
-            </div>
+            <React.Fragment>
+                <div className="container">
+                    <Menu></Menu>
+                    <Routes></Routes>
+                </div>
+            </React.Fragment>
         );
     }
 }
