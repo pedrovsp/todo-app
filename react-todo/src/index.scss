@@ -1,0 +1,11 @@
+@import './assets/styles/styles.scss';
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+}
+
+body {
+    color: var(--default-font-color);
+    background-color: var(--backgrond-color);
+}
