@@ -1,0 +1,11 @@
+.status {
+    font-size: 25px;
+
+    &.checked {
+        color: var(--checked-color);
+    }
+
+    &:not(.checked) {
+        opacity: 0.3;
+    }
+}
