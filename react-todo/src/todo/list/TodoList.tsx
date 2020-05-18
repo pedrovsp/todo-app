@@ -5,9 +5,8 @@ import './TodoList.scss';
 
 interface Props {
     list: [],
-    handleEdit: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    handleEdit: (item: TodoItem, event: boolean) => void;
     handleDelete: (event: TodoItem) => void;
-    handleCheck: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const TodoList = (props: Props) => {
@@ -23,9 +22,9 @@ const TodoList = (props: Props) => {
                 </td>
                 <td className='d-flex justify-content-between'>
                     <Button styles='primary' icon='check-circle'
-                        disabled={item.done} onClick={props.handleCheck}></Button>
-                    <Button styles='secondary' icon='edit'
-                        disabled={item.done} onClick={props.handleEdit}></Button>
+                        disabled={item.done} onClick={() => props.handleEdit(item, true)}></Button>
+                    {/* <Button styles='secondary' icon='edit'
+                        disabled={item.done} onClick={() => props.handleEdit}></Button> */}
                     <Button styles='danger' icon='trash' onClick={() => props.handleDelete(item)}></Button>
                 </td>
             </tr >

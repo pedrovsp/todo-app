@@ -20,7 +20,6 @@ export class Todo extends Component {
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
-        this.handleCheck = this.handleCheck.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -46,20 +45,11 @@ export class Todo extends Component {
         });
     }
 
-    handleCheck() {
-        console.log('Check')
-        // const description = (this.state.description);
-        // axios.post(URL, { description }).then(res => {
-        //     this.refresh();
-        // });
-    }
-
-    handleEdit() {
-        console.log('edit')
-        // const description = (this.state.description);
-        // axios.post(URL, { description }).then(res => {
-        //     this.refresh();
-        // });
+    handleEdit(item: TodoItem, check?: boolean) {
+        if (check) item.done = true;
+        axios.put(URL + `/${item._id}`, item).then(res => {
+            this.refresh();
+        });
     }
 
     handleDelete(item: TodoItem) {
@@ -76,7 +66,6 @@ export class Todo extends Component {
                     handleChange={this.handleChange}
                     handleAdd={this.handleAdd}></TodoForm>
                 <TodoList list={this.state.list}
-                    handleCheck={this.handleCheck}
                     handleDelete={this.handleDelete}
                     handleEdit={this.handleEdit}></TodoList>
             </div>);
