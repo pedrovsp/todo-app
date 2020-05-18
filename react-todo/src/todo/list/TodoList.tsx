@@ -6,7 +6,7 @@ import './TodoList.scss';
 interface Props {
     list: [],
     handleEdit: (event: React.MouseEvent<HTMLButtonElement>) => void;
-    handleDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    handleDelete: (event: TodoItem) => void;
     handleCheck: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -26,7 +26,7 @@ const TodoList = (props: Props) => {
                         disabled={item.done} onClick={props.handleCheck}></Button>
                     <Button styles='secondary' icon='edit'
                         disabled={item.done} onClick={props.handleEdit}></Button>
-                    <Button styles='danger' icon='trash' onClick={props.handleDelete}></Button>
+                    <Button styles='danger' icon='trash' onClick={() => props.handleDelete(item)}></Button>
                 </td>
             </tr >
         )

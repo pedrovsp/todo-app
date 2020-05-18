@@ -2,12 +2,12 @@ export class TodoItem {
     description: string;
     done: boolean;
     createdAt: Date;
-    __id: string;
+    _id: string;
 
-    constructor(__id: string, description: string, done: boolean, createdAt: Date) {
+    constructor(_id: string, description: string, done: boolean, createdAt: Date) {
         this.description = description;
         this.done = done;
         this.createdAt = createdAt;
-        this.__id = __id;
+        this._id = _id;
     }
 }

@@ -3,6 +3,7 @@ import { Header } from '../layout/header/Header';
 import TodoForm from './form/TodoForm';
 import TodoList from './list/TodoList';
 import axios from 'axios';
+import { TodoItem } from './model/TodoItem.model';
 interface TodoProps { }
 
 const URL = 'http://localhost:3003/api/todos'
@@ -61,11 +62,10 @@ export class Todo extends Component {
         // });
     }
 
-    handleDelete() {
-        console.log('Delete')
-        // axios.delete(URL + `/${id}`).then(res => {
-        //     this.refresh();
-        // });
+    handleDelete(item: TodoItem) {
+        axios.delete(URL + `/${item._id}`).then(res => {
+            this.refresh();
+        });
     }
 
     render() {
