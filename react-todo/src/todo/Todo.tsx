@@ -18,6 +18,20 @@ export class Todo extends Component {
         this.state = { description: '', list: [] }
         this.handleAdd = this.handleAdd.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    componentDidMount() {
+        this.refresh();
+    }
+
+    refresh() {
+        axios.get(`${URL}?sort=-createdAt`).then(resp => {
+            console.log(resp);
+            this.setState({ ...this.state, description: '', list: [...resp.data] })
+        })
     }
 
     handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -27,8 +41,31 @@ export class Todo extends Component {
     handleAdd() {
         const description = (this.state.description);
         axios.post(URL, { description }).then(res => {
-            console.log(res);
+            this.refresh();
         });
+    }
+
+    handleCheck() {
+        console.log('Check')
+        // const description = (this.state.description);
+        // axios.post(URL, { description }).then(res => {
+        //     this.refresh();
+        // });
+    }
+
+    handleEdit() {
+        console.log('edit')
+        // const description = (this.state.description);
+        // axios.post(URL, { description }).then(res => {
+        //     this.refresh();
+        // });
+    }
+
+    handleDelete() {
+        console.log('Delete')
+        // axios.delete(URL + `/${id}`).then(res => {
+        //     this.refresh();
+        // });
     }
 
     render() {
@@ -38,7 +75,10 @@ export class Todo extends Component {
                 <TodoForm description={this.state.description}
                     handleChange={this.handleChange}
                     handleAdd={this.handleAdd}></TodoForm>
-                <TodoList></TodoList>
+                <TodoList list={this.state.list}
+                    handleCheck={this.handleCheck}
+                    handleDelete={this.handleDelete}
+                    handleEdit={this.handleEdit}></TodoList>
             </div>);
     }
 }
