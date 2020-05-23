@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import './Header.scss'
 export interface HeaderProps {
     name: string;
     small: string;

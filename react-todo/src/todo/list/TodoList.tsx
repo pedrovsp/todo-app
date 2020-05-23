@@ -14,7 +14,7 @@ const TodoList = (props: Props) => {
     let listItems = (props.list || []).map((item: TodoItem, i) => {
         return (
             <tr key={i}>
-                <td>{i}</td>
+                <td>{item._id.slice(-4)}</td>
                 <td>{item.description}</td>
                 <td>{item.createdAt}</td>
                 <td>
