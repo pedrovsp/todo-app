@@ -18,13 +18,10 @@ const TodoList = (props: Props) => {
                 <td>{item.description}</td>
                 <td>{item.createdAt}</td>
                 <td>
-                    <i className={'status fa fa-check-square ' + (item.done ? 'checked' : '')}></i>
+                    <i className={'status fa fa-check-square ' + (item.done ? 'checked' : '')}
+                        onClick={() => props.handleEdit(item, !item.done)}></i>
                 </td>
                 <td className='d-flex justify-content-between'>
-                    <Button styles='primary' icon='check-circle'
-                        disabled={item.done} onClick={() => props.handleEdit(item, true)}></Button>
-                    {/* <Button styles='secondary' icon='edit'
-                        disabled={item.done} onClick={() => props.handleEdit}></Button> */}
                     <Button styles='danger' icon='trash' onClick={() => props.handleDelete(item)}></Button>
                 </td>
             </tr >
@@ -38,7 +35,7 @@ const TodoList = (props: Props) => {
                     <th>Description</th>
                     <th>Created Date</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>

@@ -21,6 +21,7 @@ export class Todo extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentDidMount() {
@@ -46,7 +47,7 @@ export class Todo extends Component {
     }
 
     handleEdit(item: TodoItem, check?: boolean) {
-        if (check) item.done = true;
+        if (check !== undefined) item.done = check;
         axios.put(URL + `/${item._id}`, item).then(res => {
             this.refresh();
         });
@@ -58,12 +59,20 @@ export class Todo extends Component {
         });
     }
 
+    handleSearch() {
+        const description = (this.state.description);
+        axios.get(URL, { params: { description__regex: `${description}` } }).then(res => {
+            this.setState({ ...this.state, description: '', list: [...res.data] })
+        });
+    }
+
     render() {
         return (
             <div>
                 <Header name='Todo' small='register'></Header>
                 <TodoForm description={this.state.description}
                     handleChange={this.handleChange}
+                    handleSearch={this.handleSearch}
                     handleAdd={this.handleAdd}></TodoForm>
                 <TodoList list={this.state.list}
                     handleDelete={this.handleDelete}

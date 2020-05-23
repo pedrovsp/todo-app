@@ -5,6 +5,7 @@ import Button from '../../layout/button/Button'
 interface Props {
     handleAdd: (event: React.MouseEvent<HTMLButtonElement>) => void;
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSearch: (event: React.MouseEvent<HTMLButtonElement>) => void;
     description: string;
 }
 
@@ -19,6 +20,7 @@ const TodoForm = (props: Props) => {
             </Grid>
             <Grid cols='12 3 2'>
                 <Button onClick={props.handleAdd} styles='primary' icon='plus'></Button>
+                <Button onClick={props.handleSearch} styles='primary' icon='search'></Button>
             </Grid>
         </div>
     )

@@ -1,5 +1,6 @@
 .status {
     font-size: 25px;
+    cursor: pointer;
 
     &.checked {
         color: var(--checked-color);
