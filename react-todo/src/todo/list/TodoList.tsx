@@ -2,9 +2,11 @@ import React from 'react'
 import { TodoItem } from '../model/TodoItem.model'
 import Button from '../../layout/button/Button';
 import './TodoList.scss';
+import { connect } from 'react-redux';
+import { GlobalState } from '../../main/reducers';
 
 interface Props {
-    list: [],
+    list: TodoItem[],
     handleEdit: (item: TodoItem, event: boolean) => void;
     handleDelete: (event: TodoItem) => void;
 }
@@ -46,4 +48,8 @@ const TodoList = (props: Props) => {
 
 }
 
-export default TodoList
+const mapStateToProps = (state: GlobalState) => ({
+    list: state.todo.list
+})
+
+export default connect(mapStateToProps)(TodoList)

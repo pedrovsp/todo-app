@@ -74,7 +74,7 @@ export class Todo extends Component {
                     handleChange={this.handleChange}
                     handleSearch={this.handleSearch}
                     handleAdd={this.handleAdd}></TodoForm>
-                <TodoList list={this.state.list}
+                <TodoList
                     handleDelete={this.handleDelete}
                     handleEdit={this.handleEdit}></TodoList>
             </div>);
