@@ -1,20 +1,16 @@
 import { combineReducers } from "redux";
 import { TodoItem } from "../todo/model/TodoItem.model";
+import { description } from "../todo/reducers/descriptionReducer";
+import { list } from "../todo/reducers/listReducer";
 
 export interface GlobalState {
-    todo: { list: TodoItem[] }
+    list: TodoItem[],
+    description: string
 }
 
 const rootReducer = combineReducers({
-    todo: () => {
-        return {
-            list: [{
-                _id: '1fsafsafw23r2afd',
-                description: 'Pagar fatura do cartao',
-                done: true
-            }]
-        }
-    }
+    list: list,
+    description: description
 })
 
 export default rootReducer
