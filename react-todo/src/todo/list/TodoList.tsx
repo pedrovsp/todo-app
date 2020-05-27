@@ -49,7 +49,7 @@ const TodoList = (props: Props) => {
 }
 
 const mapStateToProps = (state: GlobalState) => ({
-    list: state.todo.list
+    list: state.list
 })
 
 export default connect(mapStateToProps)(TodoList)
