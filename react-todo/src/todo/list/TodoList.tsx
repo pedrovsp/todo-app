@@ -4,11 +4,12 @@ import Button from '../../layout/button/Button';
 import './TodoList.scss';
 import { connect } from 'react-redux';
 import { GlobalState } from '../../main/reducers';
+import { removeTodo } from '../actions/listActions';
 
 interface Props {
     list: TodoItem[],
     handleEdit: (item: TodoItem, event: boolean) => void;
-    handleDelete: (event: TodoItem) => void;
+    removeTodo: (_id: string) => void;
 }
 
 const TodoList = (props: Props) => {
@@ -24,7 +25,7 @@ const TodoList = (props: Props) => {
                         onClick={() => props.handleEdit(item, !item.done)}></i>
                 </td>
                 <td className='d-flex justify-content-between'>
-                    <Button styles='danger' icon='trash' onClick={() => props.handleDelete(item)}></Button>
+                    <Button styles='danger' icon='trash' onClick={_ => props.removeTodo(item._id)}></Button>
                 </td>
             </tr >
         )
@@ -52,4 +53,14 @@ const mapStateToProps = (state: GlobalState) => ({
     list: state.list
 })
 
-export default connect(mapStateToProps)(TodoList)
+function mapDispatchToProps(dispatch: any) {
+    return {
+        removeTodo: (_id: string) => {
+            const action = removeTodo(_id)
+            dispatch(action);
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

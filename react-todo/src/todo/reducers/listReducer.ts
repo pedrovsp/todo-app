@@ -1,4 +1,4 @@
-import { TODO_SEARCH, TODO_ADD } from "../actions/listActions";
+import { TODO_SEARCH, TODO_ADD, TODO_REMOVE } from "../actions/listActions";
 
 export const LIST_INITIAL_STATE = [];
 
@@ -6,6 +6,7 @@ export const list = (state = LIST_INITIAL_STATE, action: { type: string, payload
     switch (action.type) {
         case TODO_SEARCH: return action.payload.data;
         case TODO_ADD: return [action.payload.data, ...state];
+        case TODO_REMOVE: return action.payload.data;
         default: return state
     }
 }

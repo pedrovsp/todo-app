@@ -18,7 +18,6 @@ export class Todo extends Component {
         super(props);
         this.state = { description: '', list: [] }
         this.handleEdit = this.handleEdit.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
     }
     refresh() {
         axios.get(`${URL}?sort=-createdAt`).then(resp => {
@@ -34,19 +33,12 @@ export class Todo extends Component {
         });
     }
 
-    handleDelete(item: TodoItem) {
-        axios.delete(URL + `/${item._id}`).then(res => {
-            this.refresh();
-        });
-    }
-
     render() {
         return (
             <div>
                 <Header name='Todo' small='register'></Header>
                 <TodoForm></TodoForm>
                 <TodoList
-                    handleDelete={this.handleDelete}
                     handleEdit={this.handleEdit}></TodoList>
             </div>);
     }
