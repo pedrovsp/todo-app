@@ -14,17 +14,23 @@ export const searchTodo = (description: string) => {
 }
 
 export const addTodo = (description: string) => {
-    const request = axios.post(URL, { description });
-    return {
-        type: TODO_ADD,
-        payload: request
+    return (dispatch: any) => {
+        axios.post(URL, { description }).then(res => dispatch({
+            type: TODO_ADD,
+            payload: res
+        })).then(res => {
+            dispatch(searchTodo(''))
+        });
     }
 }
 
 export const removeTodo = (_id: string) => {
-    const request = axios.delete(URL + `/${_id}`);
-    return [{
-        type: TODO_REMOVE,
-        payload: request
-    }, searchTodo('')]
+    return (dispatch: any) => {
+        axios.delete(URL + `/${_id}`).then(res => dispatch({
+            type: TODO_REMOVE,
+            payload: res
+        })).then(res => {
+            dispatch(searchTodo(''))
+        });
+    }
 }
