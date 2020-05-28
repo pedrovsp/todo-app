@@ -4,11 +4,11 @@ import Button from '../../layout/button/Button';
 import './TodoList.scss';
 import { connect } from 'react-redux';
 import { GlobalState } from '../../main/reducers';
-import { removeTodo } from '../actions/listActions';
+import { toggleTodo, removeTodo } from '../actions/listActions';
 
 interface Props {
     list: TodoItem[],
-    handleEdit: (item: TodoItem, event: boolean) => void;
+    toggleTodo: (item: TodoItem, event: boolean) => void;
     removeTodo: (_id: string) => void;
 }
 
@@ -22,7 +22,7 @@ const TodoList = (props: Props) => {
                 <td>{item.createdAt}</td>
                 <td>
                     <i className={'status fa fa-check-square ' + (item.done ? 'checked' : '')}
-                        onClick={() => props.handleEdit(item, !item.done)}></i>
+                        onClick={_ => props.toggleTodo(item, !item.done)}></i>
                 </td>
                 <td className='d-flex justify-content-between'>
                     <Button styles='danger' icon='trash' onClick={_ => props.removeTodo(item._id)}></Button>
@@ -55,6 +55,11 @@ const mapStateToProps = (state: GlobalState) => ({
 
 function mapDispatchToProps(dispatch: any) {
     return {
+        toggleTodo: (item: TodoItem, check?: boolean) => {
+            if (check !== undefined) item.done = check;
+            const action = toggleTodo(item)
+            dispatch(action);
+        },
         removeTodo: (_id: string) => {
             const action = removeTodo(_id)
             dispatch(action);
