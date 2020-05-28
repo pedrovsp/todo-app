@@ -23,8 +23,8 @@ export const addTodo = (description: string) => {
 
 export const removeTodo = (_id: string) => {
     const request = axios.delete(URL + `/${_id}`);
-    return {
+    return [{
         type: TODO_REMOVE,
         payload: request
-    }
+    }, searchTodo('')]
 }
